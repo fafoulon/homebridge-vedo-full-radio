@@ -38,7 +38,7 @@ function HttpSecuritySystemAccessory(log, config) {
 
            		var fs = require('fs');
            		var cookie = response.headers["set-cookie"][0].split(';')[0];
-				fs.writeFile("cookie.comelit", cookie, function(err) {
+				fs.writeFile("/tmp/cookie.comelit", cookie, function(err) {
 				    if(err) {
 				        return console.log(err);
 				    }
@@ -94,7 +94,7 @@ HttpSecuritySystemAccessory.prototype = {
 		}
 		
 				var fs = require('fs');
-				var cookie = fs.readFileSync('cookie.comelit','utf8')
+				var cookie = fs.readFileSync('/tmp/cookie.comelit','utf8')
 				
            		request.put({
 					url: this.server_address+"/panels/"+this.panel+"/areas/"+this.area,
@@ -125,7 +125,7 @@ HttpSecuritySystemAccessory.prototype = {
 	getCurrentState: function(callback) {
 		this.log("Getting current state");
 		var fs = require('fs');
-		var cookie = fs.readFileSync('cookie.comelit','utf8')
+		var cookie = fs.readFileSync('/tmp/cookie.comelit','utf8')
 		
 		request.get({
 					url: this.server_address+"/panels/"+this.panel+"/areas",
@@ -143,7 +143,7 @@ HttpSecuritySystemAccessory.prototype = {
 				}, function(error, response, body){
 					if (error) {
 						if (error.code == 'ESOCKETTIMEDOUT'){
-							var stats = fs.statSync("lastStatus");
+							var stats = fs.statSync("/tmp/comelitLastStatus");
 							var util = require('util');
 							var mtime = new Date(util.inspect(stats.mtime));
 							var t2 = new Date();
@@ -151,7 +151,7 @@ HttpSecuritySystemAccessory.prototype = {
 							var Seconds_from_T1_to_T2 = dif / 1000;
 							
 							if (Seconds_from_T1_to_T2 <20){
-								var state = fs.readFileSync('lastStatus','utf8')
+								var state = fs.readFileSync('/tmp/comelitLastStatus','utf8')
 								console.log("Using saved for current state "+state);
 								var returnstate = Characteristic.SecuritySystemTargetState.DISARM;
 								if (state == "armed"){
@@ -169,7 +169,7 @@ HttpSecuritySystemAccessory.prototype = {
 						}
 					}else{
 						if (body == '"Cannot connect to panel"'){
-							var stats = fs.statSync("lastStatus");
+							var stats = fs.statSync("/tmp/comelitLastStatus");
 							var util = require('util');
 							var mtime = new Date(util.inspect(stats.mtime));
 							var t2 = new Date();
@@ -177,7 +177,7 @@ HttpSecuritySystemAccessory.prototype = {
 							var Seconds_from_T1_to_T2 = dif / 1000;
 						}else{				
 							var state = JSON.parse(body)[0]["state"];
-			           		fs.writeFile("lastStatus", state, function(err) {
+			           		fs.writeFile("/tmp/comelitLastStatus", state, function(err) {
 							    if(err) {
 							        return console.log(err);
 							    }
@@ -196,7 +196,7 @@ HttpSecuritySystemAccessory.prototype = {
 	getTargetState: function(callback) {
 		this.log("Getting target state");
 		var fs = require('fs');
-		var cookie = fs.readFileSync('cookie.comelit','utf8')
+		var cookie = fs.readFileSync('/tmp/cookie.comelit','utf8')
 		
 		request.get({
 					url: this.server_address+"/panels/"+this.panel+"/areas",
@@ -214,7 +214,7 @@ HttpSecuritySystemAccessory.prototype = {
 				}, function(error, response, body){
 					if (error) {
 						if (error.code == 'ESOCKETTIMEDOUT'){
-							var stats = fs.statSync("lastStatus");
+							var stats = fs.statSync("/tmp/comelitLastStatus");
 							var util = require('util');
 							var mtime = new Date(util.inspect(stats.mtime));
 							var t2 = new Date();
@@ -222,7 +222,7 @@ HttpSecuritySystemAccessory.prototype = {
 							var Seconds_from_T1_to_T2 = dif / 1000;
 							
 							if (Seconds_from_T1_to_T2 <20){
-								var state = fs.readFileSync('lastStatus','utf8')
+								var state = fs.readFileSync('/tmp/comelitLastStatus','utf8')
 								console.log("Using saved for target state "+state);
 								var returnstate = Characteristic.SecuritySystemTargetState.DISARM;
 								if (state == "armed"){
@@ -242,7 +242,7 @@ HttpSecuritySystemAccessory.prototype = {
 						}
 					}else{
 						if (body == '"Cannot connect to panel"'){
-							var stats = fs.statSync("lastStatus");
+							var stats = fs.statSync("/tmp/comelitLastStatus");
 							var util = require('util');
 							var mtime = new Date(util.inspect(stats.mtime));
 							var t2 = new Date();
@@ -251,7 +251,7 @@ HttpSecuritySystemAccessory.prototype = {
 							console.log(Seconds_from_T1_to_T2);
 						}else{	
 							var state = JSON.parse(body)[0]["state"];
-			           		fs.writeFile("lastStatus", state, function(err) {
+			           		fs.writeFile("/tmp/comelitLastStatus", state, function(err) {
 							    if(err) {
 							        return console.log(err);
 							    }
