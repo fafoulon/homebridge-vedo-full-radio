@@ -4,7 +4,7 @@ Comelit Vedo Full Radio plugin for [Homebridge](https://github.com/nfarina/homeb
 # Installation
 
 1. Install homebridge using: `npm install -g homebridge`
-2. Install this plugin using: `npm install -g git+https://git@github.com/visionmedia/express.git`
+2. Install this plugin using: `npm install -g git+https://git@github.com/fafoulon/homebridge-comelit-vedo-full-radio.git`
 3. Make sure you have an account on [ComelitCloud.it](https://comelitcloud.it)
 4. Update your configuration file. See sample-config.json snippet below.
 
