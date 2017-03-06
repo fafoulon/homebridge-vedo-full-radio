@@ -44,7 +44,7 @@ Fields:
 
 It's my first try at writing a homebridge plugin, so I could really use some help to clean or improve the code. Feel free to fork and make a pull request :-) 
 
-# About the cookies
+# Misc
 
 * When you login to the website, you get a cookie, that needs to be passed to each subsequent request.
 * You also need to make a "PUT" request to tell which Panel you want to work with.
