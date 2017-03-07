@@ -1,6 +1,6 @@
 {
   "name": "homebridge-vedo-full-radio",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Comelit Vedo Full Radio plugin for homebridge: https://github.com/nfarina/homebridge",
   "license": "ISC",
   "keywords": [
@@ -8,10 +8,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/fafoulon/homebridge-comelit-vedo-full-radio.git"
+    "url": "git://github.com/fafoulon/homebridge-vedo-full-radio.git"
   },
   "bugs": {
-    "url": "http://github.com/fafoulon/homebridge-comelit-vedo-full-radio/issues"
+    "url": "http://github.com/fafoulon/homebridge-vedo-full-radio/issues"
   },
   "engines": {
     "node": ">=4.2.3",
@@ -22,7 +22,7 @@
     "request-promise": "^2.0.1",
     "request": "^2.65.0"
   },
-  "homepage": "https://github.com/fafoulon/homebridge-comelit-vedo-full-radio#readme",
+  "homepage": "https://github.com/fafoulon/homebridge-vedo-full-radio#readme",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
